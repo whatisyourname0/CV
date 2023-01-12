@@ -15,7 +15,7 @@ function Footer() {
     const getGithubStats = async () => {
       const result = await fetchGithubStats({
         username: "whatisyourname0",
-        repo: "aboutme",
+        repo: "personal-website",
       });
       const jsonData = await result.json();
 
@@ -31,12 +31,18 @@ function Footer() {
   return (
     <Container>
       <AppendixIcon src={logo}></AppendixIcon>
-      <StatsWrapper>
-        <StarIcon />
-        <Stats>{githubStats.stars}</Stats>
-        <ForkIcon />
-        <Stats>{githubStats.forks}</Stats>
-      </StatsWrapper>
+      <a
+        href="https://github.com/whatisyourname0/personal-website"
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        <StatsWrapper>
+          <StarIcon />
+          <Stats>{githubStats.stars}</Stats>
+          <ForkIcon />
+          <Stats>{githubStats.forks}</Stats>
+        </StatsWrapper>
+      </a>
     </Container>
   );
 }
