@@ -1,5 +1,5 @@
 {
-  "name": "sprint4",
+  "name": "whatisyourname-blog",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,6 +12,7 @@
     "react-scripts": "5.0.1",
     "recoil": "^0.7.6",
     "recoil-persist": "^4.2.0",
+    "scroll-into-view-if-needed": "^3.0.4",
     "styled-components": "^5.3.6",
     "swiper": "^8.4.5",
     "throttle-debounce": "^5.0.0"

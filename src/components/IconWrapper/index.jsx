@@ -72,7 +72,7 @@ const Container = styled.div`
       height: 0;
       border: 0.5em solid transparent;
       border-top-color: white;
-      transform: translate(-50%, 0);
+      transform: translate(-50%, -10%);
     }
   }
 
@@ -80,7 +80,7 @@ const Container = styled.div`
     span {
       visibility: visible;
       opacity: 1;
-      transform: translate(-50%, 0);
+      transform: translate(-50%, -10%);
     }
   }
 `;

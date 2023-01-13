@@ -31,7 +31,7 @@ function Footer() {
   return (
     <Container>
       <AppendixIcon src={logo}></AppendixIcon>
-      <a
+      <ExternalLink
         href="https://github.com/whatisyourname0/personal-website"
         target="_blank"
         rel="noreferrer noopener"
@@ -42,7 +42,7 @@ function Footer() {
           <ForkIcon />
           <Stats>{githubStats.forks}</Stats>
         </StatsWrapper>
-      </a>
+      </ExternalLink>
     </Container>
   );
 }
@@ -66,27 +66,32 @@ const AppendixIcon = styled.img`
   height: 100px;
 `;
 
+const ExternalLink = styled.a`
+  text-decoration: none;
+`;
+
 const StatsWrapper = styled.div`
   width: 100%;
 
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 3px;
 `;
 
 const Stats = styled.p`
   margin: 0 5px 0 3px;
   font-size: 15px;
   font-family: "Open Sans";
-  font-weight: 500;
+  font-weight: 600;
 
-  color: white;
+  color: #bbbaba;
 `;
 
 const StarIcon = styled(GoStar)`
-  color: white;
+  color: #bbbaba;
 `;
 
 const ForkIcon = styled(GoRepoForked)`
-  color: white;
+  color: #bbbaba;
 `;

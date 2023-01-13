@@ -1,10 +1,32 @@
 import HeadingContainer from "@components/HeadingContainer";
 import styled from "styled-components";
 import { IoConstruct } from "@react-icons/all-files/io5/IoConstruct";
+import { useEffect, useRef } from "react";
+import useIntersectionObserver from "@hooks/useIntersectionObserver";
+import { useSetRecoilState } from "recoil";
+import { focusedSectionAtom } from "@store/atoms";
 
-function Blog() {
+function Blog({ sectionRefs }) {
+  const scrollRef = useRef(null);
+  const THRESHOLD = 0.9;
+  const sectionEntry = useIntersectionObserver(scrollRef, {
+    threshold: THRESHOLD,
+  });
+  const setFocusedSection = useSetRecoilState(focusedSectionAtom);
+
+  useEffect(() => {
+    if (sectionEntry?.intersectionRatio > THRESHOLD) {
+      setFocusedSection(3);
+    }
+  }, [sectionEntry, setFocusedSection]);
+
   return (
-    <Container>
+    <Container
+      ref={(el) => {
+        sectionRefs.current = { ...sectionRefs.current, Blog: el };
+        scrollRef.current = el;
+      }}
+    >
       <HeadingContainer writeups="Blog" />
       <BlogContainer>
         <Icon />

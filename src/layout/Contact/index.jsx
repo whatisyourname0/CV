@@ -8,14 +8,36 @@ import { AiOutlineInstagram } from "@react-icons/all-files/ai/AiOutlineInstagram
 import { FiMail } from "@react-icons/all-files/fi/FiMail";
 import { GrFacebook } from "@react-icons/all-files/gr/GrFacebook";
 import { RiKakaoTalkFill } from "@react-icons/all-files/ri/RiKakaoTalkFill";
+import { useEffect, useRef } from "react";
+import useIntersectionObserver from "@hooks/useIntersectionObserver";
+import { useSetRecoilState } from "recoil";
+import { focusedSectionAtom } from "@store/atoms";
 
-function Contact() {
+function Contact({ sectionRefs }) {
+  const scrollRef = useRef(null);
+  const THRESHOLD = 0.9;
+  const sectionEntry = useIntersectionObserver(scrollRef, {
+    threshold: THRESHOLD,
+  });
+  const setFocusedSection = useSetRecoilState(focusedSectionAtom);
+
+  useEffect(() => {
+    if (sectionEntry?.intersectionRatio > 0.9) {
+      setFocusedSection(4);
+    }
+  }, [sectionEntry, setFocusedSection]);
+
   const handleMailClick = () => {
     copyToClipboard("mynameisjune111@gmail.com");
   };
 
   return (
-    <Container>
+    <Container
+      ref={(el) => {
+        sectionRefs.current = { ...sectionRefs.current, Contact: el };
+        scrollRef.current = el;
+      }}
+    >
       <SpanContainer>
         <MainSpan>CALL</MainSpan>
         <MainSpan>ME UP</MainSpan>
@@ -49,7 +71,7 @@ function Contact() {
           <IconWrapper
             link={"mailto:mynameisjune111@gmail.com"}
             icon={<FiMail />}
-            toastMessage={"Copy Mail to Clipboard"}
+            toastMessage={"Mail Me!"}
             onClick={handleMailClick}
           />
           <IconWrapper
@@ -99,8 +121,8 @@ const MainSpan = styled.span`
 
 const VerticalBar = styled.div`
   width: 0;
-  height: calc(100% - (5px));
-  border: 2.5px;
+  height: calc(100% - (4px));
+  border: 2px;
   border-style: solid;
   border-color: #ffffff;
   background-color: #ffffff;

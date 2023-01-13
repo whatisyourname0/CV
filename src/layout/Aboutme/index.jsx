@@ -4,12 +4,35 @@ import helloWord from "@utils/locale/helloWord";
 import styled from "styled-components";
 import Introduction from "./introduction";
 import logo192 from "@assets/images/logo/logo192.png";
+import { useEffect, useRef } from "react";
+import useIntersectionObserver from "@hooks/useIntersectionObserver";
+import { useSetRecoilState } from "recoil";
+import { focusedSectionAtom } from "@store/atoms";
 
-function AboutMe() {
+function AboutMe({ sectionRefs }) {
+  // Get Location
   const locale = useLocale();
 
+  const scrollRef = useRef(null);
+  const THRESHOLD = 0.9;
+  const sectionEntry = useIntersectionObserver(scrollRef, {
+    threshold: THRESHOLD,
+  });
+  const setFocusedSection = useSetRecoilState(focusedSectionAtom);
+
+  useEffect(() => {
+    if (sectionEntry?.intersectionRatio > THRESHOLD) {
+      setFocusedSection(0);
+    }
+  }, [sectionEntry, setFocusedSection]);
+
   return (
-    <Container>
+    <Container
+      ref={(el) => {
+        sectionRefs.current = { ...sectionRefs.current, "About Me": el };
+        scrollRef.current = el;
+      }}
+    >
       <HeadingContainer writeups="About Me" />
       <ContentContainer>
         <Description>

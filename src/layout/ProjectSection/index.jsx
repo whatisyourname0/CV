@@ -3,19 +3,38 @@ import SwiperCard from "@components/SwiperCard";
 import styled from "styled-components";
 import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 import "swiper/css/bundle";
+import useIntersectionObserver from "@hooks/useIntersectionObserver";
+import { useSetRecoilState } from "recoil";
+import { focusedSectionAtom } from "@store/atoms";
 
-function Projects() {
+function ProjectSection({ sectionRefs }) {
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
 
+  const scrollRef = useRef(null);
+  const THRESHOLD = 0.9;
+  const sectionEntry = useIntersectionObserver(scrollRef, { threshold: 0.9 });
+  const setFocusedSection = useSetRecoilState(focusedSectionAtom);
+
+  useEffect(() => {
+    if (sectionEntry?.intersectionRatio > THRESHOLD) {
+      setFocusedSection(1);
+    }
+  }, [sectionEntry, setFocusedSection]);
+
   return (
-    <Container>
+    <Container
+      ref={(el) => {
+        sectionRefs.current = { ...sectionRefs.current, Projects: el };
+        scrollRef.current = el;
+      }}
+    >
       <HeadingContainer writeups="Projects" />
       <ProjectContainer>
-        <Spell>Everyone can write the code,</Spell>
+        <Spell>Everyone can spell the code,</Spell>
         <Spell>But not everyone can write the quality.</Spell>
         <SwiperWrapper>
           <Swiper
@@ -60,7 +79,7 @@ function Projects() {
   );
 }
 
-export default Projects;
+export default ProjectSection;
 
 const Container = styled.section`
   width: 100%;

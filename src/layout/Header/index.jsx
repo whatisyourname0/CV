@@ -1,37 +1,73 @@
-import styled, { css } from "styled-components";
+import useHover from "@hooks/useHover";
 import useScroll from "@hooks/useScroll";
+import { MENUS } from "@layout/misc";
+import { focusedSectionAtom } from "@store/atoms";
 import { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
+import scrollIntoView from "scroll-into-view-if-needed";
+import styled, { css } from "styled-components";
 
-const MENUS = ["About Me", "Projects", "Skills", "Blog", "Contact"];
-
-function Header() {
+function Header({ sectionRefs }) {
   const { y } = useScroll();
   const [blurOffset, setBlurOffset] = useState(0);
+  const [hoverRef, isHovered] = useHover();
+  const focusedSection = useRecoilValue(focusedSectionAtom);
 
   useEffect(() => {
     let vh = window.innerHeight;
     setBlurOffset(5 * Math.min(y / vh, 1));
   }, [y, blurOffset]);
 
+  const handleClickToScroll = (sec) => {
+    scrollIntoView(sectionRefs.current[sec], {
+      behavior: "smooth",
+    });
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <Container blurOffset={blurOffset}>
       <Wrapper>
-        <IconWrapper>
-          <IconSpan blurOffset={blurOffset} className="FirstSpan">
+        <IconWrapper ref={hoverRef} onClick={scrollToTop}>
+          <IconSpan
+            blurOffset={blurOffset}
+            isHovered={isHovered}
+            className="FirstSpan"
+          >
             &lt;
           </IconSpan>
-          <IconSpan blurOffset={blurOffset} className="SecondSpan">
+          <IconSpan
+            blurOffset={blurOffset}
+            isHovered={isHovered}
+            className="SecondSpan"
+          >
             WIYN&nbsp;
           </IconSpan>
-          <IconSpan blurOffset={blurOffset} className="ThirdSpan">
+          <IconSpan
+            blurOffset={blurOffset}
+            isHovered={isHovered}
+            className="ThirdSpan"
+          >
             /&gt;
           </IconSpan>
         </IconWrapper>
         <Menus>
-          {MENUS.map((el, idx) => {
+          {MENUS.map((menu, idx) => {
             return (
-              <Menu key={idx}>
-                <MenuContent>{el}</MenuContent>
+              <Menu
+                key={idx}
+                onClick={() => {
+                  handleClickToScroll(menu);
+                }}
+                isFocused={idx === focusedSection}
+              >
+                <MenuContent>{menu}</MenuContent>
               </Menu>
             );
           })}
@@ -68,7 +104,7 @@ const Container = styled.nav`
   ${(props) =>
     props.blurOffset !== 0 &&
     css`
-      background-color: #1e1e1e4d;
+      background-color: black;
       height: 50px;
 
       border-bottom-color: hsla(0, 0%, 100%, 0.2);
@@ -89,6 +125,7 @@ const Wrapper = styled.div`
 
 const IconWrapper = styled.div`
   position: relative;
+  cursor: pointer;
 `;
 
 const IconSpan = styled.span`
@@ -107,9 +144,10 @@ const IconSpan = styled.span`
 
     ${(props) =>
       props.blurOffset !== 0 &&
+      !props.isHovered &&
       css`
         position: absolute;
-        left: 20px;
+        left: 18px;
       `}
   }
 
@@ -118,6 +156,7 @@ const IconSpan = styled.span`
 
     ${(props) =>
       props.blurOffset !== 0 &&
+      !props.isHovered &&
       css`
         transform: scale(0);
         opacity: 0;
@@ -126,9 +165,9 @@ const IconSpan = styled.span`
 
   &.ThirdSpan {
     right: 0;
-
     ${(props) =>
       props.blurOffset !== 0 &&
+      !props.isHovered &&
       css`
         position: absolute;
         right: 20px;
@@ -146,12 +185,37 @@ const Menus = styled.ul`
 `;
 
 const Menu = styled.li`
+  min-width: 60px;
   height: 100%;
+
+  padding: 0 5px;
 
   display: flex;
   align-items: center;
+  justify-content: center;
+  position: relative;
 
   cursor: pointer;
+  color: white;
+
+  &:after {
+    position: absolute;
+    content: "";
+    bottom: 0%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    mix-blend-mode: difference;
+
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+  }
 `;
 
 const MenuContent = styled.span`
