@@ -104,10 +104,11 @@ const Container = styled.nav`
   ${(props) =>
     props.blurOffset !== 0 &&
     css`
-      background-color: black;
-      height: 50px;
+      background-color: hsla(0, 0%, 100%, 0.02);
+      height: 90px;
 
       border-bottom-color: hsla(0, 0%, 100%, 0.2);
+      backdrop-filter: blur(5px);
     `}
 `;
 
@@ -130,9 +131,10 @@ const IconWrapper = styled.div`
 
 const IconSpan = styled.span`
   display: inline-block;
-  font-family: "Montserrat";
-  font-weight: 600;
+  font-weight: 400;
   font-size: 24px;
+
+  font-family: "Montserrat";
 
   transform: scale(1);
   transform-origin: right bottom;
@@ -147,7 +149,7 @@ const IconSpan = styled.span`
       !props.isHovered &&
       css`
         position: absolute;
-        left: 18px;
+        left: 16px;
       `}
   }
 
@@ -219,5 +221,7 @@ const Menu = styled.li`
 `;
 
 const MenuContent = styled.span`
+  font-style: normal;
+  font-weight: 400;
   font-size: 18px;
 `;

@@ -79,9 +79,10 @@ export default Introduction;
 const Paragraph = styled.p`
   display: block;
 
-  line-height: 1.2;
+  line-height: 1.5;
   line-break: auto;
 
-  font-family: "Open Sans";
-  font-weight: 400;
+  font-size: 2.5vw;
+  font-family: "Neue Montreal";
+  font-weight: 300;
 `;

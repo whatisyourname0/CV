@@ -7,7 +7,7 @@ export const customScrollbar = css`
   }
 
   &::-webkit-scrollbar-track {
-    background-color: transparent;
+    background-color: black;
   }
 
   &::-webkit-scrollbar-thumb {

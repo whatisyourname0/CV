@@ -33,7 +33,7 @@ function Skills({ sectionRefs }) {
         scrollRef.current = el;
       }}
     >
-      <HeadingContainer writeups="Skills" />
+      <HeadingContainer number="003" writeups="Skills" />
       <SkillsWrapper>
         <SkillCard
           imgSrc={designImage}

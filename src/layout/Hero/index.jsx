@@ -1,167 +1,149 @@
-import styled, { css } from "styled-components";
-import { GoCloudDownload } from "@react-icons/all-files/go/GoCloudDownload";
-import useScroll from "@hooks/useScroll";
-import { useEffect, useState } from "react";
+import styled from "styled-components";
 
 function Hero() {
-  const { y } = useScroll();
-  const [blurOffset, setBlurOffset] = useState(0);
-
-  useEffect(() => {
-    let vh = window.innerHeight;
-    setBlurOffset(5 * Math.min(y / vh, 1));
-  }, [y, blurOffset]);
-
   return (
     <Container>
-      <BgImage blurOffset={blurOffset} />
       <HeroWrapper>
-        <HeroTitle>I code, I build, I make</HeroTitle>
-        <HeroDesc>End-to-End Developer & Life Craftsman</HeroDesc>
-        <a href="/">
-          <ResumeButton>
-            <span>
-              <em>Get Resume</em>
-              <i>
-                <CloudIcon />
-              </i>
-            </span>
-          </ResumeButton>
-        </a>
+        <Line1>
+          <Gray>"&nbsp;</Gray>i&nbsp;<Gray>co</Gray>De,
+        </Line1>
+        <Line2>
+          i&nbsp;<Gray>m</Gray>
+          AK
+          <Gray>e,</Gray>
+        </Line2>
+        <Line3>
+          i b<Gray>Ui</Gray>lD,
+        </Line3>
+        <Line4>
+          I D<Gray>es</Gray>
+          ign. "
+        </Line4>
       </HeroWrapper>
+      <BarcodeContainer>
+        <Barcode>What Is Your Name?</Barcode>
+      </BarcodeContainer>
     </Container>
   );
 }
 
 export default Hero;
 
-const Container = styled.div`
+const Container = styled.section`
   position: relative;
   width: 100%;
-  height: 100vh;
 
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-`;
 
-const BgImage = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  left: 0;
-
-  background-image: url("/images/background/background1.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-
-  ${(props) =>
-    props.blurOffset !== 0
-      ? css`
-          filter: brightness(35%) blur(${props.blurOffset}px);
-        `
-      : css`
-          filter: brightness(35%);
-        `}
+  background-color: black;
 `;
 
 const HeroWrapper = styled.div`
+  width: 100%;
+  height: calc(100vh - 64px);
+
+  margin-top: 64px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 50px;
 
   z-index: 1;
 `;
 
-const HeroTitle = styled.h1`
-  display: block;
-  font-family: "Open Sans";
-  font-weight: 600;
-  font-size: 75px;
-  text-transform: uppercase;
+const Line = styled.div`
+  width: 100%;
+  flex-grow: 1;
+  box-sizing: border-box;
 
-  color: #ffffff;
-`;
-
-const HeroDesc = styled.h2`
-  display: block;
-  font-family: "Open Sans";
-  font-weight: 500;
-  font-size: 50px;
-
-  color: #ffffff;
-`;
-
-const ResumeButton = styled.button`
-  width: 160px;
-  height: 55px;
+  padding: 0 5%;
 
   position: relative;
 
-  font-size: 20px;
-  font-weight: 500;
-  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
 
-  border: 3.5px solid #ffffff;
-  margin-top: 20px;
-  padding: 14px 0;
-  border-radius: 50px;
+  font-family: "Major Mono Display", sans-serif;
+  font-weight: 600;
+  line-height: 0;
 
-  background-color: transparent;
+  background-color: black;
   color: white;
 
-  cursor: pointer;
-  appearance: none;
-  overflow: hidden;
-
-  transition: all 0.3s ease;
-
-  &:hover {
-    background-color: white;
-  }
-
-  span,
-  em,
-  i {
+  &:after {
+    content: "";
     position: absolute;
+    bottom: 0;
+    left: 0;
+
     width: 100%;
     height: 100%;
-    left: 0;
+    background-color: white;
+    mix-blend-mode: difference;
+
+    transform: scaleX(0);
+    transition: transform 0.3s cubic-bezier(0, 0.94, 0.7, 0.96);
   }
 
-  em {
-    top: -60%;
-    line-height: 60px;
-  }
-
-  i {
-    top: 140%;
-    line-height: 60px;
-  }
-
-  em,
-  i {
-    transition: top 0.3s ease;
-  }
-
-  &:hover {
-    em {
-      top: -160%;
-    }
-    i {
-      top: -50%;
-    }
+  &:hover::after {
+    transform: scaleX(1);
   }
 `;
 
-const CloudIcon = styled(GoCloudDownload)`
-  font-size: 24px;
-  color: black;
+const Line1 = styled(Line)`
+  justify-content: flex-end;
+  font-size: 10vw;
+
+  &:after {
+    transform-origin: right center;
+  }
+`;
+
+const Line2 = styled(Line)`
+  justify-content: flex-start;
+  font-size: 10vw;
+
+  &:after {
+    transform-origin: left center;
+  }
+`;
+const Line3 = styled(Line)`
+  justify-content: flex-end;
+  font-size: 10vw;
+
+  &:after {
+    transform-origin: right center;
+  }
+`;
+const Line4 = styled(Line)`
+  justify-content: flex-start;
+  font-size: 10vw;
+
+  &:after {
+    transform-origin: left center;
+  }
+`;
+
+const Gray = styled.span`
+  color: #504f4f;
+`;
+
+const BarcodeContainer = styled.div`
+  width: 100%;
+  height: 15vh;
+  margin: 5vh 0;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
+const Barcode = styled.span`
+  color: white;
+  font-size: 5vmax;
+  font-family: "Libre Barcode 39 Text";
 `;

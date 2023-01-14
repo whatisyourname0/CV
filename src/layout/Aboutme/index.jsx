@@ -3,7 +3,7 @@ import useLocale from "@hooks/useLocale";
 import helloWord from "@utils/locale/helloWord";
 import styled from "styled-components";
 import Introduction from "./introduction";
-import logo192 from "@assets/images/logo/logo192.png";
+import logo192 from "@assets/images/logo/logo512Light.png";
 import { useEffect, useRef } from "react";
 import useIntersectionObserver from "@hooks/useIntersectionObserver";
 import { useSetRecoilState } from "recoil";
@@ -33,15 +33,17 @@ function AboutMe({ sectionRefs }) {
         scrollRef.current = el;
       }}
     >
-      <HeadingContainer writeups="About Me" />
+      <HeadingContainer number="001" writeups="About Me" />
       <ContentContainer>
-        <Description>
+        <HelloContainer>
           <Hello>{helloWord(locale)}</Hello>
-          <Introduction locale={locale} />
-        </Description>
+        </HelloContainer>
         <ImageWrapper>
           <ImageMySelf src={logo192} />
         </ImageWrapper>
+        <Description>
+          <Introduction locale={locale} />
+        </Description>
       </ContentContainer>
     </Container>
   );
@@ -55,14 +57,16 @@ const Container = styled.section`
   display: flex;
   flex-direction: column;
 
-  background-color: #fcfcfc;
+  color: white;
+  background-color: black;
 `;
 
 const ContentContainer = styled.section`
   width: 100%;
 
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 `;
 
@@ -71,26 +75,36 @@ const Description = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+
+  padding: 0 12.5%;
+`;
+
+const HelloContainer = styled.div`
+  width: 100%;
+
+  padding-bottom: 8vh;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 `;
 
 const Hello = styled.h2`
-  font-family: "Open Sans";
-  font-size: 40px;
+  font-family: "Montserrat";
+  font-size: 6vw;
   font-weight: 500;
 
-  margin-top: 20px;
-  margin-bottom: 50px;
+  margin-left: 15vw;
 `;
 
 const ImageWrapper = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding-right: 25vw;
+  padding-bottom: 5vh;
 
-  img:first-child {
-    margin-left: 100px;
-  }
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 `;
 
 const ImageMySelf = styled.img`
@@ -98,6 +112,6 @@ const ImageMySelf = styled.img`
   height: 300px;
   vertical-align: middle;
 
-  border: 5px solid black;
+  border: 5px solid white;
   border-radius: 100%;
 `;
