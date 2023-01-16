@@ -3,7 +3,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import styled from "styled-components";
 
 function Carousal() {
-  const arr = ["quality.", "motion.", "logic.", "world."];
+  //FIXME: Handle Resize Event?
+  const arr = ["quality.", "motion.", "logic.", "value", ""];
 
   const options = {
     autoPlay: true,

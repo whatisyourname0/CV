@@ -17,7 +17,6 @@
     "recoil": "^0.7.6",
     "scroll-into-view-if-needed": "^3.0.4",
     "smooth-scrollbar": "^8.8.1",
-    "smooth-scrollbar-react": "^2.4.1",
     "styled-components": "^5.3.6",
     "throttle-debounce": "^5.0.0"
   },

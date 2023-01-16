@@ -3,6 +3,8 @@ import Scrollbar from "smooth-scrollbar";
 
 const options = {
   damping: 0.1,
+  renderByPixels: true,
+  alwaysShowTracks: true,
 };
 
 const SmoothScroll = () => {

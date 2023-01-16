@@ -1,12 +1,27 @@
 import HeadingContainer from "@components/HeadingContainer";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import useIntersectionObserver from "@hooks/useIntersectionObserver";
 import { focusedSectionAtom } from "@store/atoms";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { LINES } from "./skills";
 import { Textfit } from "react-textfit";
+
+const CATEGORY = ["Frontend", "Backend", "Design", "Others"];
+
+const profToColor = (prof) => {
+  switch (+prof) {
+    case 1:
+      return "#9d2f33";
+    case 2:
+      return "#d39816";
+    case 3:
+      return "#96d90654";
+    default:
+      return "white";
+  }
+};
 
 function Skills({ sectionRefs }) {
   const scrollRef = useRef(null);
@@ -15,6 +30,8 @@ function Skills({ sectionRefs }) {
     threshold: THRESHOLD,
   });
   const setFocusedSection = useSetRecoilState(focusedSectionAtom);
+
+  const [area, setArea] = useState(undefined);
 
   useEffect(() => {
     if (sectionEntry?.intersectionRatio > 0.9) {
@@ -30,17 +47,30 @@ function Skills({ sectionRefs }) {
       }}
     >
       <HeadingContainer number="003" writeups="Skills" />
-      <SkillsWrapper>
+      <SkillsWrapper
+        onMouseLeave={() => {
+          setArea(undefined);
+        }}
+      >
         <SpellContainer>
           <Spell>One for all, all for One.</Spell>
         </SpellContainer>
         <LanguagesContainer id="SkillsSection">
           <LanguageHeader>
             <Textfit mode="single">
-              <Category>Frontend&nbsp;</Category>
-              <Category>Backend&nbsp;</Category>
-              <Category>Design&nbsp;</Category>
-              <Category>Others</Category>
+              {CATEGORY.map((el, idx) => {
+                return (
+                  <Category
+                    key={idx}
+                    onMouseEnter={() => {
+                      setArea(idx);
+                    }}
+                    isSelected={idx === area}
+                  >
+                    {el}&nbsp;
+                  </Category>
+                );
+              })}
             </Textfit>
           </LanguageHeader>
           {LINES.map((line, idx) => {
@@ -48,7 +78,17 @@ function Skills({ sectionRefs }) {
               <LineContainer key={idx}>
                 <Textfit mode="single">
                   {line.map((lang, idx2) => {
-                    return <TextWrapper key={idx2}>{lang.name}</TextWrapper>;
+                    return (
+                      <TextWrapper
+                        key={idx2}
+                        prof={profToColor(lang.prof)}
+                        isSelected={lang.type === CATEGORY[area]}
+                      >
+                        <Text isSelected={lang.type === CATEGORY[area]}>
+                          {lang.name}
+                        </Text>
+                      </TextWrapper>
+                    );
                   })}
                 </Textfit>
               </LineContainer>
@@ -115,7 +155,8 @@ const Category = styled.span`
   display: inline-block;
   padding: 0 3vw;
 
-  color: #232323;
+  color: ${(props) => (props.isSelected ? "#ffffff" : "#232323")};
+  transition: color 0.15s ease-in-out;
 `;
 
 const LineContainer = styled.div`
@@ -124,11 +165,39 @@ const LineContainer = styled.div`
   padding: 2vh 0;
 `;
 
-const TextWrapper = styled.span`
+const TextWrapper = styled.div`
   display: inline-block;
   padding: 0 3vw;
+  position: relative;
+  line-height: 1.1;
 
+  ${(props) =>
+    props.isSelected &&
+    css`
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: 0%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: ${(props) => props.prof};
+        mix-blend-mode: screen;
+
+        transform: scaleX(0);
+        transform-origin: left center;
+        transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      }
+
+      &:hover::after {
+        transform: scaleX(1);
+      }
+    `}
+`;
+
+const Text = styled.span`
   font-family: "Lato";
   font-weight: 800;
-  color: white;
+  color: ${(props) => (props.isSelected ? "#ffffff" : "#232323")};
+  transition: color 0.15s ease-in-out;
 `;

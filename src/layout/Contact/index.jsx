@@ -33,7 +33,7 @@ function Contact({ sectionRefs }) {
       }}
     >
       <SpellContainer>
-        <Spell>Pretty Interested?</Spell>
+        <Spell>Pretty Interested?&nbsp;&nbsp;</Spell>
       </SpellContainer>
       <FooterContainer>
         <LottieContainer>
@@ -50,10 +50,10 @@ function Contact({ sectionRefs }) {
         <MarqueeWrapper>
           <CustomMarquee pauseOnHover gradient={false}>
             WhatIsYourname? ⚪ WhatIsYourname? WhatIsYourname? ⚪
-            WhatIsYourname? ⚪WhatIsYourname? ⚪ WhatIsYourname?
-            ⚪WhatIsYourname? ⚪ WhatIsYourname? ⚪WhatIsYourname? ⚪
-            WhatIsYourname? ⚪WhatIsYourname? ⚪ WhatIsYourname?
-            ⚪WhatIsYourname? ⚪ WhatIsYourname? ⚪
+            WhatIsYourname? ⚪ WhatIsYourname? ⚪ WhatIsYourname? ⚪
+            WhatIsYourname? ⚪ WhatIsYourname? ⚪ WhatIsYourname? ⚪
+            WhatIsYourname? ⚪WhatIsYourname? ⚪ WhatIsYourname? ⚪
+            WhatIsYourname? ⚪
           </CustomMarquee>
         </MarqueeWrapper>
       </FooterContainer>

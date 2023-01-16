@@ -1,4 +1,5 @@
 import lottieScrollDown from "@assets/lottie/scrollDown.json";
+import SmoothScroll from "@components/SmoothScroll";
 import useIdle from "@hooks/useIdle";
 import AboutMe from "@layout/Aboutme";
 import Blog from "@layout/Blog";
@@ -13,8 +14,6 @@ import HeadConfig from "@utils/HeadConfig";
 import { useRef } from "react";
 import Lottie from "react-lottie-player";
 import styled, { css } from "styled-components";
-import { Scrollbar } from "smooth-scrollbar-react";
-import SmoothScroll from "@components/SmoothScroll";
 
 // TODO: Make it Responsive & Polyfill;
 

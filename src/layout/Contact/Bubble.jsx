@@ -1,10 +1,15 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 function Bubble({ isContactOpen }) {
   return (
     <BubbleContainer onClick={() => {}} isContactOpen={isContactOpen}>
       <Title>Let's Talk.</Title>
-      <Desc>Feel free sending email to...</Desc>
+      <Desc>
+        Feel free sending email or get resume at&nbsp;
+        <ExtLink download={true} href="/favicon.ico">
+          here
+        </ExtLink>
+      </Desc>
       <EmailWrapper
         href={`mailto:mynameisjune111@gmail.com?subject=hello&body=Sending Email to Junho Lee&nbsp;(whatisyourname0)`}
       >
@@ -68,6 +73,15 @@ const Desc = styled.div`
 
   font-size: 3vw;
   font-weight: 300;
+`;
+
+const ExtLink = styled.a`
+  text-decoration: none;
+  color: white;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const EmailWrapper = styled.a`
