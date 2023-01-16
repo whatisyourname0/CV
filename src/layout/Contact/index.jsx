@@ -49,7 +49,7 @@ function Contact({ sectionRefs }) {
         </LottieContainer>
         <MarqueeWrapper>
           <CustomMarquee pauseOnHover gradient={false}>
-            WhatIsYourname? ⚪ WhatIsYourname? WhatIsYourname? ⚪
+            WhatIsYourname? ⚪ WhatIsYourname? ⚪ WhatIsYourname? ⚪
             WhatIsYourname? ⚪ WhatIsYourname? ⚪ WhatIsYourname? ⚪
             WhatIsYourname? ⚪ WhatIsYourname? ⚪ WhatIsYourname? ⚪
             WhatIsYourname? ⚪WhatIsYourname? ⚪ WhatIsYourname? ⚪
