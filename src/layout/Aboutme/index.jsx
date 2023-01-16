@@ -20,8 +20,6 @@ function AboutMe({ sectionRefs }) {
   });
   const setFocusedSection = useSetRecoilState(focusedSectionAtom);
 
-  const [hoverRef, isHovered] = useHover();
-
   useEffect(() => {
     if (sectionEntry?.intersectionRatio > THRESHOLD) {
       setFocusedSection(0);
@@ -37,9 +35,6 @@ function AboutMe({ sectionRefs }) {
     >
       <HeadingContainer number="001" writeups="About Me" />
       <ContentContainer>
-        <HelloContainer ref={hoverRef}>
-          <Hello isHovered={isHovered}>{helloWord(locale)}</Hello>
-        </HelloContainer>
         <Description>
           <Introduction locale={locale} />
         </Description>
@@ -75,27 +70,5 @@ const Description = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
 
-  padding: 8vh 12.5% 0;
-`;
-
-const HelloContainer = styled.div`
-  width: 100%;
-
-  position: relative;
-
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-
-  overflow: hidden;
-`;
-
-const Hello = styled.h2`
-  display: block;
-  width: 100%;
-  font-family: "Montserrat";
-  font-size: 6vw;
-  font-weight: 500;
-
-  margin-left: 15vw;
+  padding: 0vh 12.5% 0;
 `;

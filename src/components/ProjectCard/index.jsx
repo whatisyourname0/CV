@@ -1,4 +1,5 @@
 import { AiFillGithub } from "@react-icons/all-files/ai/AiFillGithub";
+import parseGithubURL from "@utils/parseGithubURL";
 import styled from "styled-components";
 
 function ProjectCard({ title, description, repolink, stack, reverse }) {
@@ -29,7 +30,7 @@ function ProjectCard({ title, description, repolink, stack, reverse }) {
             rel="noreferrer noopener"
           >
             <GithubIcon />
-            <LinkDesc>Repo Link</LinkDesc>
+            <LinkDesc>{parseGithubURL(repolink)}</LinkDesc>
             <LinkDesc className="dark">→</LinkDesc>
           </ExternalLink>
         </IconContainer>
@@ -79,15 +80,15 @@ const Title = styled.h3`
 `;
 
 const Desc = styled.p`
-  font-size: 1vw;
-  line-height: 1.3;
+  font-size: 1.2vw;
+  line-height: 1.4;
 `;
 
 const HorizontalBar = styled.hr`
   width: 100%;
   height: 3px;
 
-  margin: 2vh 0;
+  margin: -1vh 0;
 
   background-color: white;
 `;
@@ -105,7 +106,7 @@ const ImageContainer = styled.div`
   align-items: center;
 `;
 
-const Image = styled.img`
+const Image = styled.div`
   width: 300px;
   height: 300px;
 `;

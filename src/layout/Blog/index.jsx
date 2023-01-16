@@ -69,6 +69,7 @@ const BlogContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 2px;
 `;
 
 const TempSpan = styled.a`
@@ -77,6 +78,8 @@ const TempSpan = styled.a`
   font-weight: 500;
   font-size: 7vw;
   margin: 0 20px;
+
+  padding-top: 2px;
 
   text-decoration: none;
 

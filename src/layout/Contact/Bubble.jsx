@@ -3,18 +3,15 @@ import styled from "styled-components";
 function Bubble({ isContactOpen }) {
   return (
     <BubbleContainer onClick={() => {}} isContactOpen={isContactOpen}>
-      <Title>Let's Talk.</Title>
-      <Desc>
-        Feel free sending email or get resume at&nbsp;
-        <ExtLink download={true} href="/favicon.ico">
-          here
-        </ExtLink>
-      </Desc>
-      <EmailWrapper
-        href={`mailto:mynameisjune111@gmail.com?subject=hello&body=Sending Email to Junho Lee&nbsp;(whatisyourname0)`}
-      >
-        mynameisjune111@gmail.com
-      </EmailWrapper>
+      <Title>Let's Talk</Title>
+      <Wrapper>
+        <Desc>Feel free to send email via </Desc>
+        <EmailWrapper
+          href={`mailto:mynameisjune111@gmail.com?subject=hello&body=Sending Email to Junho Lee&nbsp;(whatisyourname0)`}
+        >
+          mynameisjune111@gmail.com
+        </EmailWrapper>
+      </Wrapper>
     </BubbleContainer>
   );
 }
@@ -30,7 +27,7 @@ const BubbleContainer = styled.div`
 
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-around;
   align-items: start;
 
   position: relative;
@@ -73,20 +70,18 @@ const Desc = styled.div`
 
   font-size: 3vw;
   font-weight: 300;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 `;
 
-const ExtLink = styled.a`
-  text-decoration: none;
-  color: white;
-
-  &:hover {
-    text-decoration: underline;
-  }
+const Wrapper = styled.div`
+  width: 100%;
 `;
 
 const EmailWrapper = styled.a`
   display: block;
-  flex-grow: 1;
 
   text-decoration: none;
   color: white;
@@ -94,7 +89,7 @@ const EmailWrapper = styled.a`
 
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   font-size: 5vw;
 
   &:hover {

@@ -40,7 +40,7 @@ function Hero() {
       <BarcodeContainer>
         <Barcode>WhatIsYourName0</Barcode>
         <ExtLink
-          href="https://github.com/whatisyourname0/personal-website"
+          href="https://github.com/whatisyourname0/"
           target="_blank"
           rel="noreferrer noopener"
         >
@@ -107,7 +107,7 @@ const Line = styled.div`
     mix-blend-mode: difference;
 
     transform: scaleX(0);
-    transition: transform 0.3s cubic-bezier(0, 0.94, 0.7, 0.96);
+    transition: transform 1.5s ease-in-out;
   }
 
   &:hover::after {
@@ -125,8 +125,8 @@ const Line1 = styled(Line)`
 
 const Icon1 = styled(FaCodeBranch)`
   color: black;
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
 
   margin-left: 10%;
   z-index: 1;
@@ -142,8 +142,8 @@ const Line2 = styled(Line)`
 
 const Icon2 = styled(BsGearFill)`
   color: black;
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
 
   margin-right: 10%;
   z-index: 1;
@@ -159,8 +159,8 @@ const Line3 = styled(Line)`
 
 const Icon3 = styled(SiWebpack)`
   color: black;
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
 
   margin-left: 10%;
   z-index: 1;
@@ -176,8 +176,8 @@ const Line4 = styled(Line)`
 
 const Icon4 = styled(CgFigma)`
   color: black;
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
 
   margin-right: 5%;
   z-index: 1;

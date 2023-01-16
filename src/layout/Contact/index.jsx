@@ -78,6 +78,7 @@ const Container = styled.section`
 const SpellContainer = styled.div`
   width: 100%;
   padding: 4vh;
+  box-sizing: border-box;
   display: flex;
   justify-content: flex-start;
   align-items: center;

@@ -72,6 +72,7 @@ const ProjectContainer = styled.div`
 
 const SpellContainer = styled.div`
   width: 100%;
+  box-sizing: border-box;
 
   padding: 4vh 0 8vh;
   padding-left: 5vw;

@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { LINES } from "./skills";
 import { Textfit } from "react-textfit";
+import useSingleEffect from "@hooks/useSingleEffect";
 
 const CATEGORY = ["Frontend", "Backend", "Design", "Others"];
 
@@ -31,13 +32,19 @@ function Skills({ sectionRefs }) {
   });
   const setFocusedSection = useSetRecoilState(focusedSectionAtom);
 
-  const [area, setArea] = useState(undefined);
+  const [area, setArea] = useState(0);
 
   useEffect(() => {
     if (sectionEntry?.intersectionRatio > 0.9) {
       setFocusedSection(2);
     }
   }, [sectionEntry, setFocusedSection]);
+
+  useSingleEffect(() => {
+    setInterval(() => {
+      setArea((prev) => (prev + 1) % 4);
+    }, 5000);
+  });
 
   return (
     <Container
@@ -47,26 +54,13 @@ function Skills({ sectionRefs }) {
       }}
     >
       <HeadingContainer number="003" writeups="Skills" />
-      <SkillsWrapper
-        onMouseLeave={() => {
-          setArea(undefined);
-        }}
-      >
-        <SpellContainer>
-          <Spell>One for all, all for One.</Spell>
-        </SpellContainer>
+      <SkillsWrapper>
         <LanguagesContainer id="SkillsSection">
           <LanguageHeader>
             <Textfit mode="single">
               {CATEGORY.map((el, idx) => {
                 return (
-                  <Category
-                    key={idx}
-                    onMouseEnter={() => {
-                      setArea(idx);
-                    }}
-                    isSelected={idx === area}
-                  >
+                  <Category key={idx} isSelected={idx === area}>
                     {el}&nbsp;
                   </Category>
                 );
@@ -121,25 +115,6 @@ const SkillsWrapper = styled.div`
   gap: 0.5px;
 `;
 
-const SpellContainer = styled.div`
-  width: 100%;
-
-  padding: 4vh 0 8vh;
-  padding-left: 5vw;
-  color: white;
-  font-size: 5vw;
-`;
-
-const Spell = styled.span`
-  display: inline-block;
-  font-family: "Neue Montreal";
-  font-size: 4.3vw;
-  font-weight: 400;
-  line-height: 1.2;
-
-  color: white;
-`;
-
 const LanguagesContainer = styled.div`
   width: 100%;
 `;
@@ -156,7 +131,7 @@ const Category = styled.span`
   padding: 0 3vw;
 
   color: ${(props) => (props.isSelected ? "#ffffff" : "#232323")};
-  transition: color 0.15s ease-in-out;
+  transition: color 0.8s ease-in-out;
 `;
 
 const LineContainer = styled.div`
@@ -199,5 +174,5 @@ const Text = styled.span`
   font-family: "Lato";
   font-weight: 800;
   color: ${(props) => (props.isSelected ? "#ffffff" : "#232323")};
-  transition: color 0.15s ease-in-out;
+  transition: color 0.8s ease-in-out;
 `;

@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 function Carousal() {
   //FIXME: Handle Resize Event?
-  const arr = ["quality.", "motion.", "logic.", "value", ""];
+  const arr = ["quality", "motion", "logic", "value", "impact"];
 
   const options = {
     autoPlay: true,
@@ -27,7 +27,7 @@ function Carousal() {
         {arr.map((el, idx) => {
           return (
             <Span key={idx} transformOffset={idx}>
-              {el}
+              {el}.
             </Span>
           );
         })}
