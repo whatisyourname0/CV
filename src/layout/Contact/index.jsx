@@ -52,7 +52,7 @@ function Contact({ sectionRefs }) {
             WhatIsYourname? ⚪ WhatIsYourname? ⚪ WhatIsYourname? ⚪
             WhatIsYourname? ⚪ WhatIsYourname? ⚪ WhatIsYourname? ⚪
             WhatIsYourname? ⚪ WhatIsYourname? ⚪ WhatIsYourname? ⚪
-            WhatIsYourname? ⚪WhatIsYourname? ⚪ WhatIsYourname? ⚪
+            WhatIsYourname? ⚪ WhatIsYourname? ⚪ WhatIsYourname? ⚪
             WhatIsYourname? ⚪
           </CustomMarquee>
         </MarqueeWrapper>
