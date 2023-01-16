@@ -1,9 +1,13 @@
 import styled from "styled-components";
 
+import lottiePhone from "@assets/lottie/phone.json";
 import useIntersectionObserver from "@hooks/useIntersectionObserver";
 import { focusedSectionAtom } from "@store/atoms";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import Marquee from "react-fast-marquee";
+import Lottie from "react-lottie-player";
 import { useSetRecoilState } from "recoil";
+import Bubble from "./Bubble";
 
 function Contact({ sectionRefs }) {
   const scrollRef = useRef(null);
@@ -12,6 +16,8 @@ function Contact({ sectionRefs }) {
     threshold: THRESHOLD,
   });
   const setFocusedSection = useSetRecoilState(focusedSectionAtom);
+
+  const [isContactOpen, setIsContactOpen] = useState(false);
 
   useEffect(() => {
     if (sectionEntry?.intersectionRatio > 0.9) {
@@ -27,8 +33,30 @@ function Contact({ sectionRefs }) {
       }}
     >
       <SpellContainer>
-        <Spell>Interested?</Spell>
+        <Spell>Pretty Interested?</Spell>
       </SpellContainer>
+      <FooterContainer>
+        <LottieContainer>
+          <Bubble isContactOpen={isContactOpen} />
+          <LottiePlayer
+            loop
+            animationData={lottiePhone}
+            play
+            onClick={(event) => {
+              setIsContactOpen((prev) => !prev);
+            }}
+          />
+        </LottieContainer>
+        <MarqueeWrapper>
+          <CustomMarquee pauseOnHover gradient={false}>
+            WhatIsYourname? ⚪ WhatIsYourname? WhatIsYourname? ⚪
+            WhatIsYourname? ⚪WhatIsYourname? ⚪ WhatIsYourname?
+            ⚪WhatIsYourname? ⚪ WhatIsYourname? ⚪WhatIsYourname? ⚪
+            WhatIsYourname? ⚪WhatIsYourname? ⚪ WhatIsYourname?
+            ⚪WhatIsYourname? ⚪ WhatIsYourname? ⚪
+          </CustomMarquee>
+        </MarqueeWrapper>
+      </FooterContainer>
     </Container>
   );
 }
@@ -37,11 +65,11 @@ export default Contact;
 
 const Container = styled.section`
   width: 100%;
-  height: 245px;
-  box-sizing: border-box;
+  height: 100vh;
 
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
 
   background-color: #ffffff;
@@ -49,19 +77,60 @@ const Container = styled.section`
 
 const SpellContainer = styled.div`
   width: 100%;
-
-  padding: 4vh 0 8vh;
-  padding-left: 5vw;
-  color: white;
-  font-size: 5vw;
+  padding: 4vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 `;
 
 const Spell = styled.span`
   display: inline-block;
+
+  margin-left: 5vw;
   font-family: "Neue Montreal";
-  font-size: 4.3vw;
+  font-size: 5vw;
   font-weight: 400;
   line-height: 1.2;
 
+  color: black;
+`;
+
+const FooterContainer = styled.div`
+  width: 100%;
+`;
+
+const LottieContainer = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const LottiePlayer = styled(Lottie)`
+  width: 150px;
+  height: 150px;
+
+  cursor: pointer;
+`;
+
+const MarqueeWrapper = styled.div`
+  width: 100%;
+  height: 20px;
+
+  padding: 3vh 0;
+
+  overflow: hidden;
+  white-space: nowrap;
+
+  background-color: black;
   color: white;
+
+  letter-spacing: 2px;
+`;
+
+const CustomMarquee = styled(Marquee)`
+  width: 100%;
+  height: 100%;
 `;

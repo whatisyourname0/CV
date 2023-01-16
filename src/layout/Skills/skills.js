@@ -34,6 +34,7 @@ const LINE_5 = [
 const LINE_6 = [
   { name: "Assembly", type: "Misc" },
   { name: "Webpack", type: "Frontend" },
+  { name: "Git", type: "Others" },
 ];
 
 export const LINES = [LINE_1, LINE_2, LINE_3, LINE_4, LINE_5, LINE_6];

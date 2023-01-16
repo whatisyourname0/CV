@@ -5,7 +5,11 @@ function ProjectCard({ title, description, repolink, stack, reverse }) {
   const handleCardClick = () => {};
 
   return (
-    <Container reverseOrder={reverse === true} onClick={handleCardClick}>
+    <Container
+      reverseOrder={reverse === true}
+      onClick={handleCardClick}
+      data-scroll-section
+    >
       <Description>
         <Title>
           <span>{title}</span>

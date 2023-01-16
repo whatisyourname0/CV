@@ -34,7 +34,7 @@ function Skills({ sectionRefs }) {
         <SpellContainer>
           <Spell>One for all, all for One.</Spell>
         </SpellContainer>
-        <LanguagesContainer>
+        <LanguagesContainer id="SkillsSection">
           <LanguageHeader>
             <Textfit mode="single">
               <Category>Frontend&nbsp;</Category>
@@ -108,7 +108,7 @@ const LanguageHeader = styled.div`
   width: 100%;
   height: 3vh;
 
-  padding-bottom: 4vh;
+  padding-bottom: 8vh;
 `;
 
 const Category = styled.span`

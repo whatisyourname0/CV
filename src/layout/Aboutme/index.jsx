@@ -1,13 +1,13 @@
 import HeadingContainer from "@components/HeadingContainer";
+import useHover from "@hooks/useHover";
+import useIntersectionObserver from "@hooks/useIntersectionObserver";
 import useLocale from "@hooks/useLocale";
+import { focusedSectionAtom } from "@store/atoms";
 import helloWord from "@utils/locale/helloWord";
+import { useEffect, useRef } from "react";
+import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import Introduction from "./introduction";
-import logo192 from "@assets/images/logo/logo512Light.png";
-import { useEffect, useRef } from "react";
-import useIntersectionObserver from "@hooks/useIntersectionObserver";
-import { useSetRecoilState } from "recoil";
-import { focusedSectionAtom } from "@store/atoms";
 
 function AboutMe({ sectionRefs }) {
   // Get Location
@@ -19,6 +19,8 @@ function AboutMe({ sectionRefs }) {
     threshold: THRESHOLD,
   });
   const setFocusedSection = useSetRecoilState(focusedSectionAtom);
+
+  const [hoverRef, isHovered] = useHover();
 
   useEffect(() => {
     if (sectionEntry?.intersectionRatio > THRESHOLD) {
@@ -35,12 +37,9 @@ function AboutMe({ sectionRefs }) {
     >
       <HeadingContainer number="001" writeups="About Me" />
       <ContentContainer>
-        <HelloContainer>
-          <Hello>{helloWord(locale)}</Hello>
+        <HelloContainer ref={hoverRef}>
+          <Hello isHovered={isHovered}>{helloWord(locale)}</Hello>
         </HelloContainer>
-        <ImageWrapper>
-          <ImageMySelf src={logo192} />
-        </ImageWrapper>
         <Description>
           <Introduction locale={locale} />
         </Description>
@@ -76,42 +75,27 @@ const Description = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
 
-  padding: 0 12.5%;
+  padding: 8vh 12.5% 0;
 `;
 
 const HelloContainer = styled.div`
   width: 100%;
 
-  padding-bottom: 8vh;
+  position: relative;
 
   display: flex;
   justify-content: flex-start;
   align-items: center;
+
+  overflow: hidden;
 `;
 
 const Hello = styled.h2`
+  display: block;
+  width: 100%;
   font-family: "Montserrat";
   font-size: 6vw;
   font-weight: 500;
 
   margin-left: 15vw;
-`;
-
-const ImageWrapper = styled.div`
-  width: 100%;
-  padding-right: 25vw;
-  padding-bottom: 5vh;
-
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-`;
-
-const ImageMySelf = styled.img`
-  width: 300px;
-  height: 300px;
-  vertical-align: middle;
-
-  border: 5px solid white;
-  border-radius: 100%;
 `;

@@ -1,25 +1,26 @@
-import Header from "@layout/Header";
-import AboutMe from "@layout/Aboutme";
-import Hero from "@layout/Hero";
-import "@styles/styles.css";
-import styled, { css } from "styled-components";
-import { customScrollbar } from "@styles/scrollbar";
-import ProjectSection from "@layout/ProjectSection";
-import Skills from "@layout/Skills";
-import Blog from "@layout/Blog";
-import HeadConfig from "@utils/HeadConfig";
-import Contact from "@layout/Contact";
-import Footer from "@layout/Footer";
-import { useRef } from "react";
-import { LocomotiveScrollProvider } from "react-locomotive-scroll";
-import Lottie from "react-lottie-player";
 import lottieScrollDown from "@assets/lottie/scrollDown.json";
 import useIdle from "@hooks/useIdle";
+import AboutMe from "@layout/Aboutme";
+import Blog from "@layout/Blog";
+import Contact from "@layout/Contact";
+import Footer from "@layout/Footer";
+import Hero from "@layout/Hero";
+import ProjectSection from "@layout/ProjectSection";
+import Skills from "@layout/Skills";
+import { customScrollbar } from "@styles/scrollbar";
+import "@styles/styles.css";
+import HeadConfig from "@utils/HeadConfig";
+import { useRef } from "react";
+import Lottie from "react-lottie-player";
+import styled, { css } from "styled-components";
+import { Scrollbar } from "smooth-scrollbar-react";
+import SmoothScroll from "@components/SmoothScroll";
+
+// TODO: Make it Responsive & Polyfill;
 
 function App() {
   const sectionRefs = useRef({});
   const showanimation = useIdle(5e3);
-  const locomotiveScrollRef = useRef(null);
 
   return (
     <Body>
@@ -30,17 +31,16 @@ function App() {
         play
         showanim={showanimation.toString()}
       />
-      {/* <LocomotiveScrollProvider> */}
+      <SmoothScroll />
       <Wrapper>
         <Hero />
         <AboutMe sectionRefs={sectionRefs} />
         <ProjectSection sectionRefs={sectionRefs} />
         <Skills sectionRefs={sectionRefs} />
         <Blog sectionRefs={sectionRefs} />
-        <Contact sectionRefs={sectionRefs} />
         <Footer />
+        <Contact sectionRefs={sectionRefs} />
       </Wrapper>
-      {/* </LocomotiveScrollProvider> */}
     </Body>
   );
 }
