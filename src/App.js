@@ -18,7 +18,7 @@ import useIdle from "@hooks/useIdle";
 
 function App() {
   const sectionRefs = useRef({});
-  const showanimation = useIdle(3e3);
+  const showanimation = useIdle(5e3);
   const locomotiveScrollRef = useRef(null);
 
   return (
@@ -28,9 +28,8 @@ function App() {
         loop
         animationData={lottieScrollDown}
         play
-        showanimation={showanimation}
+        showanim={showanimation.toString()}
       />
-      <Header sectionRefs={sectionRefs} />
       {/* <LocomotiveScrollProvider> */}
       <Wrapper>
         <Hero />
@@ -48,7 +47,7 @@ function App() {
 
 export default App;
 
-const Body = styled.body`
+const Body = styled.div`
   position: relative;
 `;
 
@@ -73,7 +72,7 @@ const LottiePlayer = styled(Lottie)`
   transition: opacity 1s ease-in-out;
 
   ${(props) => {
-    return props.showanimation === true
+    return props.showanim === "true"
       ? css`
           opacity: 1;
         `

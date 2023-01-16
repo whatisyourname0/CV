@@ -20,9 +20,7 @@ function Hero() {
           ign. "
         </Line4>
       </HeroWrapper>
-      <BarcodeContainer>
-        <Barcode>What Is Your Name?</Barcode>
-      </BarcodeContainer>
+      <BarcodeContainer></BarcodeContainer>
     </Container>
   );
 }
@@ -142,8 +140,8 @@ const BarcodeContainer = styled.div`
   align-items: center;
 `;
 
-const Barcode = styled.span`
-  color: white;
-  font-size: 5vmax;
-  font-family: "Libre Barcode 39 Text";
-`;
+// const Barcode = styled.span`
+//   color: white;
+//   font-size: 5vmax;
+//   font-family: "Libre Barcode 39 Text";
+// `;

@@ -7,8 +7,7 @@ import { focusedSectionAtom } from "@store/atoms";
 import { useSetRecoilState } from "recoil";
 import ProjectCard from "@components/ProjectCard";
 import { PROJECTS } from "./projects";
-
-const QUALITY_WRITEUPS = ["quality", "talent", "grit"];
+import Carousal from "./Carousal";
 
 function ProjectSection({ sectionRefs }) {
   const scrollRef = useRef(null);
@@ -33,9 +32,9 @@ function ProjectSection({ sectionRefs }) {
       <ProjectContainer>
         <SpellContainer>
           <Spell>Everyone can spell the code,</Spell>
-          <Spell>
+          <Spell className="pink">
             But not everyone can write the&nbsp;
-            <Spell className="pink">quality.</Spell>
+            <Carousal />
           </Spell>
         </SpellContainer>
         <CardContainer>
@@ -77,13 +76,12 @@ const SpellContainer = styled.div`
   padding: 4vh 0 8vh;
   padding-left: 5vw;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
 `;
 
 const Spell = styled.span`
+  display: inline-block;
   font-family: "Neue Montreal";
   font-size: 4.3vw;
   font-weight: 400;
@@ -92,8 +90,7 @@ const Spell = styled.span`
   color: white;
 
   &.pink {
-    background-color: #f6f6f6;
-    color: black;
+    display: flex;
   }
 `;
 

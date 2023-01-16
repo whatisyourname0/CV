@@ -2,10 +2,14 @@ import { AiFillGithub } from "@react-icons/all-files/ai/AiFillGithub";
 import styled from "styled-components";
 
 function ProjectCard({ title, description, repolink, stack, reverse }) {
+  const handleCardClick = () => {};
+
   return (
-    <Container reverseOrder={reverse === true}>
+    <Container reverseOrder={reverse === true} onClick={handleCardClick}>
       <Description>
-        <Title>{title}</Title>
+        <Title>
+          <span>{title}</span>
+        </Title>
         <Desc>{description}</Desc>
         <HorizontalBar />
         <StackTitle>Stack</StackTitle>
@@ -59,9 +63,15 @@ const Description = styled.div`
 `;
 
 const Title = styled.h3`
+  position: relative;
+
+  padding: 5px;
+
   font-weight: 600;
   letter-spacing: 2px;
-  font-size: 6vw;
+  font-size: 5.5vw;
+
+  overflow: hidden;
 `;
 
 const Desc = styled.p`
