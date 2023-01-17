@@ -19,4 +19,13 @@ export const PROJECTS = [
     repolink: "https://github.com/whatisyourname0/CV",
     stacks: ["React.js"],
   },
+  {
+    title: "react-moar-table",
+    description: `React-table is a widely-known npm package for lightweight table element. It provides
+    useful features such as customable cells and row-wise & column-wise operations. I modified this package for more
+    optimized version for table, and added basic features like column & row resizing.
+    `,
+    repolink: "https://github.com/whatisyourname0/react-moar-table",
+    stacks: ["React.js", "react-table(package)"],
+  },
 ];
