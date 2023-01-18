@@ -30,6 +30,7 @@ const LINE_5 = [
   { name: "TypeScript", type: "Frontend", prof: "2" },
   { name: "Figma", type: "Design", prof: "1" },
   { name: "Svelte", type: "Frontend", prof: "1" },
+  { name : "Kotlin", type: "Frontend", prof: "1"}
 ];
 
 const LINE_6 = [
