@@ -4,14 +4,14 @@ function Bubble({ isContactOpen }) {
   return (
     <BubbleContainer onClick={() => {}} isContactOpen={isContactOpen}>
       <Title>Let's Talk</Title>
-      <Wrapper>
+      <MainWrapper>
         <Desc>Feel free to send email via </Desc>
         <EmailWrapper
           href={`mailto:mynameisjune111@gmail.com?subject=hello&body=Sending Email to Junho Lee&nbsp;(whatisyourname0)`}
         >
           mynameisjune111@gmail.com
         </EmailWrapper>
-      </Wrapper>
+      </MainWrapper>
     </BubbleContainer>
   );
 }
@@ -20,7 +20,7 @@ export default Bubble;
 
 const BubbleContainer = styled.div`
   width: 70vw;
-  height: 45vh;
+  min-height: max(40vh, 50px);
 
   margin-bottom: 3vh;
   padding: 3vh 6vw;
@@ -35,7 +35,7 @@ const BubbleContainer = styled.div`
 
   background-color: black;
   color: white;
-  border-radius: 2vw;
+  border-radius: 10px;
 
   transform-origin: bottom center;
   transform: ${(props) => (props.isContactOpen ? "scale(100%)" : "scale(0%)")};
@@ -61,14 +61,14 @@ const BubbleContainer = styled.div`
 const Title = styled.div`
   width: 100%;
 
-  font-size: 6vw;
+  font-size: max(3vw, 42px);
 `;
 
 const Desc = styled.div`
   width: 100%;
   padding-top: 3%;
 
-  font-size: 3vw;
+  font-size: max(3vw, 20px);
   font-weight: 300;
 
   display: flex;
@@ -76,7 +76,7 @@ const Desc = styled.div`
   align-items: center;
 `;
 
-const Wrapper = styled.div`
+const MainWrapper = styled.div`
   width: 100%;
 `;
 

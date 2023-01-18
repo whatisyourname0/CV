@@ -43,7 +43,7 @@ function Skills({ sectionRefs }) {
   useSingleEffect(() => {
     setInterval(() => {
       setArea((prev) => (prev + 1) % 4);
-    }, 5000);
+    }, 4000);
   });
 
   return (

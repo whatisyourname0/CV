@@ -77,21 +77,19 @@ const Container = styled.section`
 
 const SpellContainer = styled.div`
   width: 100%;
-  padding: 4vh;
+  max-height: 1vh;
+  padding: 3vh 3vw;
+
   box-sizing: border-box;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
 `;
 
 const Spell = styled.span`
   display: inline-block;
-
-  margin-left: 5vw;
   font-family: "Neue Montreal";
-  font-size: 5vw;
   font-weight: 400;
   line-height: 1.2;
+
+  font-size: min(10vw, 50px);
 
   color: black;
 `;

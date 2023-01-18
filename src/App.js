@@ -1,6 +1,7 @@
 import lottieScrollDown from "@assets/lottie/scrollDown.json";
 import SmoothScroll from "@components/SmoothScroll";
 import useIdle from "@hooks/useIdle";
+import useMediaQuery from "@hooks/useMediaQuery";
 import AboutMe from "@layout/Aboutme";
 import Blog from "@layout/Blog";
 import Contact from "@layout/Contact";
@@ -20,16 +21,21 @@ import styled, { css } from "styled-components";
 function App() {
   const sectionRefs = useRef({});
   const showanimation = useIdle(5e3);
+  const isDesktop = useMediaQuery({
+    query: "(min-width : 1280px)",
+  });
 
   return (
     <Body>
       <HeadConfig />
-      <LottiePlayer
-        loop
-        animationData={lottieScrollDown}
-        play
-        showanim={showanimation.toString()}
-      />
+      {isDesktop && (
+        <LottiePlayer
+          loop
+          animationData={lottieScrollDown}
+          play
+          showanim={showanimation.toString()}
+        />
+      )}
       <SmoothScroll />
       <Wrapper>
         <Hero />

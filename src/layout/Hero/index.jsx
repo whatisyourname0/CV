@@ -125,8 +125,8 @@ const Line1 = styled(Line)`
 
 const Icon1 = styled(FaCodeBranch)`
   color: black;
-  width: 100px;
-  height: 100px;
+  max-width: 100px;
+  max-height: 100px;
 
   margin-left: 10%;
   z-index: 1;
@@ -142,8 +142,8 @@ const Line2 = styled(Line)`
 
 const Icon2 = styled(BsGearFill)`
   color: black;
-  width: 100px;
-  height: 100px;
+  max-width: 100px;
+  max-height: 100px;
 
   margin-right: 10%;
   z-index: 1;
@@ -159,8 +159,8 @@ const Line3 = styled(Line)`
 
 const Icon3 = styled(SiWebpack)`
   color: black;
-  width: 100px;
-  height: 100px;
+  max-width: 100px;
+  max-height: 100px;
 
   margin-left: 10%;
   z-index: 1;
@@ -176,8 +176,8 @@ const Line4 = styled(Line)`
 
 const Icon4 = styled(CgFigma)`
   color: black;
-  width: 100px;
-  height: 100px;
+  max-width: 100px;
+  max-height: 100px;
 
   margin-right: 5%;
   z-index: 1;
@@ -190,7 +190,7 @@ const Gray = styled.span`
 const BarcodeContainer = styled.div`
   width: 100%;
   height: 15vh;
-  padding: 10vh 0;
+  padding: 10vh 0 1vh;
 
   display: flex;
   flex-direction: column;

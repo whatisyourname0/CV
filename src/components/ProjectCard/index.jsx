@@ -6,45 +6,46 @@ function ProjectCard({ title, description, repolink, stack, reverse }) {
   const handleCardClick = () => {};
 
   return (
-    <Container
-      reverseOrder={reverse === true}
-      onClick={handleCardClick}
-      data-scroll-section
-    >
-      <Description>
-        <Title>
-          <span>{title}</span>
-        </Title>
-        <Desc>{description}</Desc>
-        <HorizontalBar />
-        <StackTitle>Stack</StackTitle>
-        <StackContainer>
-          {stack.map((el, idx) => {
-            return <Stack key={idx}>{el}</Stack>;
-          })}
-        </StackContainer>
-        <IconContainer>
-          <ExternalLink
-            href={repolink}
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            <GithubIcon />
-            <LinkDesc>{parseGithubURL(repolink)}</LinkDesc>
-            <LinkDesc className="dark">→</LinkDesc>
-          </ExternalLink>
-        </IconContainer>
-      </Description>
-      <ImageContainer>
-        <Image />
-      </ImageContainer>
-    </Container>
+    <BigContainer>
+      <MainWrapper reverseOrder={reverse === true} onClick={handleCardClick}>
+        <Description>
+          <Title>
+            <span>{title}</span>
+          </Title>
+          <Desc>{description}</Desc>
+          <HorizontalBar />
+          <StackTitle>Stack</StackTitle>
+          <StackContainer>
+            {stack.map((el, idx) => {
+              return <Stack key={idx}>{el}</Stack>;
+            })}
+          </StackContainer>
+        </Description>
+        <ImageContainer>
+          <Image />
+        </ImageContainer>
+      </MainWrapper>
+      <IconContainer reverseOrder={reverse === true}>
+        <ExternalLink href={repolink} target="_blank" rel="noreferrer noopener">
+          <GithubIcon />
+          <LinkDesc>{parseGithubURL(repolink)}</LinkDesc>
+          <LinkDesc className="dark">→</LinkDesc>
+        </ExternalLink>
+      </IconContainer>
+    </BigContainer>
   );
 }
 
 export default ProjectCard;
 
-const Container = styled.div`
+const BigContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+`;
+
+const MainWrapper = styled.div`
   width: 100%;
   height: fit-content;
 
@@ -107,8 +108,8 @@ const ImageContainer = styled.div`
 `;
 
 const Image = styled.div`
-  width: 300px;
-  height: 300px;
+  width: 100%;
+  height: 100%;
 `;
 
 const StackContainer = styled.div`
@@ -125,8 +126,10 @@ const Stack = styled.li`
 
 const IconContainer = styled.div`
   width: 100%;
+  height: 3vh;
   display: flex;
-  justify-content: flex-start;
+  justify-content: ${(props) =>
+    props.reverseOrder ? "flex-start" : "flex-end"};
   align-items: center;
 `;
 
@@ -167,8 +170,11 @@ const ExternalLink = styled.a`
 `;
 
 const GithubIcon = styled(AiFillGithub)`
-  width: 50px;
-  height: 50px;
+  width: 1vmax;
+  height: 1vmax;
+
+  min-width: 25px;
+  min-height: 25px;
 `;
 
 const LinkDesc = styled.span`
