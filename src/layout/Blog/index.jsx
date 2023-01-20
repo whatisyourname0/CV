@@ -42,6 +42,8 @@ function Blog({ sectionRefs }) {
           return (
             <TempSpan
               href="https://0xffffffff.tistory.com"
+              target="_blank"
+              rel="noreferrer noopener"
               className={el}
               key={idx}
             >
