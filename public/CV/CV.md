@@ -11,9 +11,18 @@
 - Mar. 2017 - Aug. 2023 (expected)
   - B.S., Electrical & Electronical Engineering, Yonsei University
 
+## Professional Experience
+
+- Whatssub! Co. Ltd.
+  - Global App Software Developer
+    - Develop 'Whatssub!' iOS App Interactions & Layouts.
+    - Maintain Ongoing Live Service & Measure performance and KPIs.
+    - Designed iOS crash error handling package.
+
 ## Others
 
 - Sep. 2022 - Dec. 2022
+
   - YSC, Yonsei Security Clubs.
   - Interested in Web Security, Reverse Engineering.
 
@@ -34,7 +43,7 @@
 #### Frameworks
 
 - FrontEnd : React.js, Next.js, Vue.js, Svelte
-- BackEnd: Node.js, C
+- BackEnd: Node.js
 
 #### Tools & Miscellaneous
 

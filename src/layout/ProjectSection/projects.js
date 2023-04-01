@@ -28,4 +28,12 @@ export const PROJECTS = [
     repolink: "https://github.com/whatisyourname0/react-moar-table",
     stacks: ["React.js", "react-table"],
   },
+  {
+    title: "GDSC Yonsei Landing",
+    description: `Google Developer Student Clubs, as known as GDSC, are community groups designed to help students develope leadership and development skills.
+    Powered by mathematical calculation, GDSC Yonsei got the best and the finest landing website amoung other Clubs. 
+    `,
+    repolink: "https://github.com/gdsc-ys/gdsc-ys.github.io",
+    stacks: ["React.js", "locomotive-scroll", "framer-motion"],
+  },
 ];
